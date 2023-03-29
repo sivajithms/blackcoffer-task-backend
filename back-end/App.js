@@ -13,8 +13,8 @@ mongoose.connect('mongodb://0.0.0.0:27017/blackcoffer',{
 })
 
 const db = mongoose.connection
-if(db)
-console.log('db connected');
+db.once('open', () => console.log('db connected'));
+
 
 //middlewares
 App.use(cors())
@@ -35,6 +35,7 @@ App.get('/data',(req,res)=>{
 })
 
 //server
-App.listen(5000,()=>{
-  console.log('serever connected on port 5000')
+port = 5000
+App.listen(port,()=>{
+  console.log('serever connected on port '+port)
 })
